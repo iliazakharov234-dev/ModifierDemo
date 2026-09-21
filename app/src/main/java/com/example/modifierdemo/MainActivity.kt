@@ -20,7 +20,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.Image
 import androidx.compose.ui.res.painterResource
-
+import androidx.compose.ui.Alignment
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.ui.draw.clip
 
 @Composable
 fun CustomImage(image: Int, modifier: Modifier = Modifier) {
@@ -32,7 +35,6 @@ fun CustomImage(image: Int, modifier: Modifier = Modifier) {
 }
 
 
-
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,10 +42,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             ModifierDemoTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    DemoScreen(modifier = Modifier.padding(innerPadding))
                 }
             }
         }
@@ -52,26 +51,37 @@ class MainActivity : ComponentActivity() {
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    ModifierDemoTheme {
-        Greeting("Android")
-    }
-}
 
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun DemoScreen(modifier: Modifier = Modifier) {
     val mymodifier = modifier
-        .padding(all = 10.dp)
         .border(width = 2.dp, color = Color.Black)
-    Text(
-        "Hello Compose",
-        modifier = mymodifier,
-        fontSize = 40.sp,
-        fontWeight = FontWeight.Bold
-    )
+        .padding(all = 10.dp)
+    Column(
+        Modifier.padding(20.dp),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Text(
+            "Hello Compose",
+            mymodifier,
+            fontSize = 40.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+
+        Spacer(Modifier.height(16.dp))
+        CustomImage(
+            R.drawable.vacation,
+            Modifier
+                .padding(16.dp)
+                .width(270.dp)
+                .clip(shape = RoundedCornerShape(30.dp))
+        )
+    }
 }
+
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {

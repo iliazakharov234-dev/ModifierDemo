@@ -23,12 +23,15 @@ import androidx.compose.ui.res.painterResource
 
 
 @Composable
-fun CustomImage(image: Int) {
+fun CustomImage(image: Int, modifier: Modifier = Modifier) {
     Image(
         painter = painterResource(image),
-        contentDescription = null
+        contentDescription = null,
+        modifier
     )
 }
+
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

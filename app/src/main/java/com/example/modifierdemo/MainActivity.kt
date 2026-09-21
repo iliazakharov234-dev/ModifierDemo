@@ -14,6 +14,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import com.example.modifierdemo.ui.theme.ModifierDemoTheme
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -48,4 +52,18 @@ fun GreetingPreview() {
     ModifierDemoTheme {
         Greeting("Android")
     }
+}
+
+@Composable
+fun DemoScreen(modifier: Modifier = Modifier) {
+    val mymodifier = modifier
+        .border(width = 2.dp, color = Color.Black)
+        .padding(all = 10.dp)
+
+    Text(
+        "Hello Compose",
+        modifier = mymodifier,
+        fontSize = 40.sp,
+        fontWeight = FontWeight.Bold
+    )
 }
